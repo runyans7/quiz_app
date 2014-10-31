@@ -103,11 +103,11 @@ html {
   font-size: 1.5em;
 }
 
-.correct {
+.correct h2 {
   color: green;
 }
 
-.incorrect {
+.incorrect h2 {
   color: red;
 }
 
@@ -123,4 +123,10 @@ html {
 #next-question {
   margin-top: 5px;
   display: none;
+}
+
+#try-again {
+  display: none;
+  margin-top: 50px;
+  text-align: center;
 }

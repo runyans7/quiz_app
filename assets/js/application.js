@@ -71,12 +71,15 @@ $(document).ready(function() {
 
   /*--- Quiz is reset to show new question. ---*/
   $('#next-question').click(function() {
-    $('#question-box').empty();
-    $('#answer-choices').empty();
     questionNumber++;
     hideAnswerBox();
-    $('#question-status-box').empty();
-    setQuiz();
+    if (questionNumber < 5) {
+      setQuiz();
+    } else {
+      console.log('showing try agian');
+      $('#quiz').hide();
+      $('#try-again').show();
+    }
   });
 
   /*--- Setup quiz questions ---*/
@@ -95,6 +98,7 @@ $(document).ready(function() {
   function showAnswerBox() {
     $('#answer-box').show();
     $('#next-question').show();
+    $('#try-again').show();
   }
 
   /*--- Hides answer box for next question. Clears correct and Incorrect classes ---*/
@@ -108,6 +112,9 @@ $(document).ready(function() {
   /*--- Setup Quiz ---*/
   function setQuiz() {
     var currentQuestion = questionBank[questionNumber];
+    $('#question-box').empty();
+    $('#answer-choices').empty();
+    $('#question-status-box').empty();
     setQuestion(currentQuestion);
     setAnswerChoices(currentQuestion.choices);
     var questionNumberDisplay = questionNumber + 1;
@@ -115,6 +122,10 @@ $(document).ready(function() {
   }
 
   setQuiz();
+
+
+
+  
 
 
   
