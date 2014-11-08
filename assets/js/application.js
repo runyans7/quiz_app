@@ -104,6 +104,8 @@ $(document).ready(function() {
 
   /*--- Displays user score and gives user choice to play again ---*/
   function tryAgain() {
+    updateProgressBar();
+    $('#number-correct').empty();
     $('#quiz').hide();
     $('<div id="try-again"></div>').insertAfter("#quiz");
     $('<p>You scored ' + numberCorrect + ' out of 5</p>').appendTo('#try-again');
@@ -124,16 +126,36 @@ $(document).ready(function() {
     $('#next-question').hide();
   }
 
+  function updateProgressBar () {
+    $('#progress-bar').removeClass();
+    if (numberCorrect == 1) {
+      $('#progress-bar').addClass('one-correct');
+    } else if (numberCorrect == 2) {
+      $('#progress-bar').addClass('two-correct');
+    } else if (numberCorrect == 3) {
+      $('#progress-bar').addClass('three-correct');
+    } else if (numberCorrect == 4) {
+      $('#progress-bar').addClass('four-correct');
+    } else if (numberCorrect == 5) {
+      $('#progress-bar').addClass('five-correct');
+    } else {
+      $('#progress-bar').addClass('zero-correct');
+    }
+  }
+
   /*--- Setup Quiz ---*/
   function setQuiz() {
     var currentQuestion = questionBank[questionNumber];
     $('#question-box').empty();
     $('#answer-choices').empty();
     $('#question-status-box').empty();
+    $('#number-correct').empty();
     setQuestion(currentQuestion);
     setAnswerChoices(currentQuestion.choices);
     var questionNumberDisplay = questionNumber + 1;
+    updateProgressBar();
     $('#question-status-box').append('<p>Question ' + questionNumberDisplay + ' of 5</p>');
+    $('#number-correct').append('<p>' + numberCorrect + ' correct of 5</p>')
   }
 
   setQuiz();
