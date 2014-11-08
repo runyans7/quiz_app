@@ -27,14 +27,14 @@ $(document).ready(function() {
 
   var question3 = new Question(
     "Known as the world's largest cocktail party, the Georgia Bulldog's take on this team in Jacksonville.",
-    ["Florida State", "Florida", "Auburn", "USC"],
+    ["FSU", "Florida", "Auburn", "USC"],
     "Florida"  
   );
 
   var question4 = new Question(
-    "This historic team, will begin playing an ACC heavy schedule in 2015.",
-    ["Alabama", "Penn State", "Notre Dame", "Southern Cal"],
-    "Notre Dame"
+    "As one of the all time great programs, this team has more national titles than any other university.",
+    ["Alabama", "Texas", "USC", "FSU"],
+    "Alabama"
   );
 
   var question5 = new Question(
@@ -76,10 +76,18 @@ $(document).ready(function() {
     if (questionNumber < 5) {
       setQuiz();
     } else {
-      console.log('showing try agian');
-      $('#quiz').hide();
-      $('#try-again').show();
+      console.log('showing try again');
+      tryAgain();
     }
+  });
+
+  /*--- Restart quiz on click ---*/
+  $(document).on('click', '#try-again-button', function() {
+    $('#quiz').show();
+    $('#try-again').remove();
+    questionNumber = 0;
+    numberCorrect = 0;
+    setQuiz();
   });
 
   /*--- Setup quiz questions ---*/
@@ -94,11 +102,18 @@ $(document).ready(function() {
     }
   }
 
+  /*--- Displays user score and gives user choice to play again ---*/
+  function tryAgain() {
+    $('#quiz').hide();
+    $('<div id="try-again"></div>').insertAfter("#quiz");
+    $('<p>You scored ' + numberCorrect + ' out of 5</p>').appendTo('#try-again');
+    $('<input type="button" id="try-again-button" class="button" value="Try again">').appendTo('#try-again');
+  }
+
   /*--- Display answer box on submit ---*/
   function showAnswerBox() {
     $('#answer-box').show();
     $('#next-question').show();
-    $('#try-again').show();
   }
 
   /*--- Hides answer box for next question. Clears correct and Incorrect classes ---*/
