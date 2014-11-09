@@ -93,14 +93,14 @@ $(document).ready(function() {
   /*--- Setup quiz questions ---*/
   function setQuestion(questionInput) {
     $("<p>" + questionInput.question + "</p>").appendTo("#question-box");
-  }
+  };
 
   /*--- Setup answer choices ---*/
   function setAnswerChoices(answerInput) {
     for(var i = 0; i < answerInput.length; i++) {
       $("<li><input type=\"button\" class=\"button\" value=" + answerInput[i] + "></input></li>").appendTo('#answer-choices');
     }
-  }
+  };
 
   /*--- Displays user score and gives user choice to play again ---*/
   function tryAgain() {
@@ -110,13 +110,13 @@ $(document).ready(function() {
     $('<div id="try-again"></div>').insertAfter("#quiz");
     $('<p>You scored ' + numberCorrect + ' out of 5</p>').appendTo('#try-again');
     $('<input type="button" id="try-again-button" class="button" value="Try again">').appendTo('#try-again');
-  }
+  };
 
   /*--- Display answer box on submit ---*/
   function showAnswerBox() {
     $('#answer-box').show();
     $('#next-question').show();
-  }
+  };
 
   /*--- Hides answer box for next question. Clears correct and Incorrect classes ---*/
   function hideAnswerBox() {
@@ -124,7 +124,7 @@ $(document).ready(function() {
     $('#answer-box').removeClass('correct incorrect');
     $('#answer-box').hide();
     $('#next-question').hide();
-  }
+  };
 
   function updateProgressBar () {
     $('#progress-bar').removeClass();
@@ -141,7 +141,7 @@ $(document).ready(function() {
     } else {
       $('#progress-bar').addClass('zero-correct');
     }
-  }
+  };
 
   /*--- Setup Quiz ---*/
   function setQuiz() {
@@ -156,35 +156,7 @@ $(document).ready(function() {
     updateProgressBar();
     $('#question-status-box').append('<p>Question ' + questionNumberDisplay + ' of 5</p>');
     $('#number-correct').append('<p>' + numberCorrect + ' correct of 5</p>')
-  }
+  };
 
   setQuiz();
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
